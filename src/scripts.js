@@ -1,6 +1,7 @@
 let userRepo = new UserRepository(userData);
 let hydration = new Hydration(hydrationData);
-let sleep = new Sleep(sleepData)
+let sleep = new Sleep(sleepData);
+let activity = new Activity(activityData);
 
 const userName = document.querySelector('.user-name');
 const userAddress = document.querySelector('.user-address');
@@ -27,7 +28,7 @@ function populateUserInfo(id) {
   userStride.innerText = user.strideLength;
   userStepGoal.innerText = user.dailyStepGoal;
   userGoalAverage.innerText = userRepo.getStepGoalAverage();
-  stepComparison.innerText  = (user.dailyStepGoal > userRepo.getStepGoalAverage()) ? 
+  stepComparison.innerText  = (user.dailyStepGoal > userRepo.getStepGoalAverage()) ?
     `You're step goal is ${user.dailyStepGoal - userRepo.getStepGoalAverage()} steps above the average` :
     `You're step goal is ${userRepo.getStepGoalAverage() - user.dailyStepGoal} steps below the average`
   friendsList.innerHTML = friendsList.innerHTML = user.friends.map(friendID => userRepo.getUserData(friendID).name)

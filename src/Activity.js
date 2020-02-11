@@ -1,3 +1,8 @@
+// if (typeof require !== 'undefined') {
+//   const UserRepository = require('../src/UserRepository.js');
+// }
+// userRepo = new UserRepository(userData);
+
 class Activity {
   constructor(activityData) {
     this.activityData = activityData;
@@ -22,12 +27,12 @@ class Activity {
     return this.getWeek(id, date).reduce((acc, obj) => acc + obj.numSteps, 0);
   }
 
-  getMilesByDay(id, date, userRepo) {
+  getMilesByDay(id, date) {
     let feetWalked = this.getDay(id, date).numSteps * userRepo.getUserData(id).strideLength;
     return +(feetWalked / 5280).toFixed(1);
   }
 
-  getMilesByWeek(id, date, userRepo) {
+  getMilesByWeek(id, date) {
     return this.getWeek(id, date).map(obj =>
       this.getMilesByDay(id, obj.date, userRepo));
   }
@@ -42,11 +47,11 @@ class Activity {
       acc + day.minutesActive, 0) / weekData.length);
   }
 
-  checkStepGoal(id, date, userRepo) {
+  checkStepGoal(id, date) {
     return this.getDay(id, date).numSteps > userRepo.getUserData(id).dailyStepGoal;
   }
 
-  getGoalDays(id, userRepo) {
+  getGoalDays(id) {
     return this.getUserData(id).filter(obj =>
       obj.numSteps > userRepo.getUserData(id).dailyStepGoal);
   }
@@ -99,7 +104,7 @@ class Activity {
     return streaks.map(streak => streak[2]);
   }
 
-  challengeFriends(id, date, userRepo) {
+  challengeFriends(id, date) {
     let contestants = userRepo.getUserData(id).friends.concat(id);
     return contestants.sort((a, b) =>
       this.getStepsByWeek(b, date) - this.getStepsByWeek(a, date));

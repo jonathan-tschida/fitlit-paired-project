@@ -10,10 +10,10 @@ const UserRepository = require('../src/UserRepository.js');
 
 
 describe('Activity', function() {
-  let activity, userRepo;
+  let userRepo, activity;
   beforeEach(function() {
-    activity = new Activity(activityData);
     userRepo = new UserRepository(userData);
+    activity = new Activity(activityData);
   });
 
   it('Should be a function', function() {
@@ -29,11 +29,11 @@ describe('Activity', function() {
   });
 
   it('Should be able to return miles walked for a given day', function(){
-    expect(activity.getMilesByDay(1, '2020/02/02', userRepo)).to.equal(2.3);
+    expect(activity.getMilesByDay(1, '2020/02/02')).to.equal(2.3);
   });
 
   it('Should be able to return miles walked each day in a week', function(){
-    expect(activity.getMilesByWeek(1, '2020/02/08', userRepo)).to.deep.equal([2.3, 2.6, 7.7, 6.8, 5.3, 7, 4.1]);
+    expect(activity.getMilesByWeek(1, '2020/02/08')).to.deep.equal([2.3, 2.6, 7.7, 6.8, 5.3, 7, 4.1]);
   });
 
   it('Should be able to return minutes active for a given day', function() {
@@ -45,16 +45,16 @@ describe('Activity', function() {
   });
 
   it('Should tell a user that they\'ve reached a step goal', function(){
-    expect(activity.checkStepGoal(11, '2020/02/04', userRepo)).to.equal(true);
+    expect(activity.checkStepGoal(11, '2020/02/04')).to.equal(true);
   });
 
   it('Should tell a user that they haven\'t reached a step goal', function(){
-    expect(activity.checkStepGoal(11, '2020/02/02', userRepo)).to.equal(false);
+    expect(activity.checkStepGoal(11, '2020/02/02')).to.equal(false);
   });
 
   it('Should be able to find all the days where the step goal was exceeded', function() {
     let goalDays = activityData.slice(19);
-    expect(activity.getGoalDays(111, userRepo)).to.deep.equal(goalDays);
+    expect(activity.getGoalDays(111)).to.deep.equal(goalDays);
   });
 
   it('Should find a user\'s all-time stair climbing record', function() {
@@ -84,6 +84,6 @@ describe('Activity', function() {
   });
 
   it('Should be able to return an array of ids ordered by steps taken in a week', function() {
-    expect(activity.challengeFriends(1, '2020/02/08', userRepo)).to.deep.equal([11, 1, 111]);
+    expect(activity.challengeFriends(1, '2020/02/08')).to.deep.equal([11, 1, 111]);
   });
 });
