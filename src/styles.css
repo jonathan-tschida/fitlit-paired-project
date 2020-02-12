@@ -73,6 +73,10 @@ main {
 }
 
 .friends-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   height: 9em;
   border: .1em solid black;

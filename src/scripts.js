@@ -47,6 +47,11 @@ const weeklyMinutes = document.querySelector('.weekly-minutes');
 const stepComparisonDay = document.querySelector('.step-comparison');
 const minutesComparison = document.querySelector('.minutes-comparison');
 const stairComparison = document.querySelector('.stair-comparison');
+const firstPlace = document.querySelector('.first-place');
+const secondPlace = document.querySelector('.second-place');
+const thirdPlace = document.querySelector('.third-place');
+const fourthPlace = document.querySelector('.fourth-place');
+const fifthPlace = document.querySelector('.fifth-place');
 
 function populateUserInfo(id, date) {
   let user = new User(userRepo.getUserData(id));
@@ -59,9 +64,7 @@ function populateUserInfo(id, date) {
   stepComparison.innerHTML  = (user.dailyStepGoal > userRepo.getStepGoalAverage()) ?
     `<span>Goal Comparison:</span> You're step goal is ${user.dailyStepGoal - userRepo.getStepGoalAverage()} steps above the average` :
     `<span>Goal Comparison:</span> You're step goal is ${userRepo.getStepGoalAverage() - user.dailyStepGoal} steps below the average`;
-  friendsList.innerHTML = friendsList.innerHTML = user.friends.map(friendID => userRepo.getUserData(friendID).name);
   currentDate.innerText = date;
-
 }
 
 function populateHydrationInfo(id, date) {
@@ -117,7 +120,29 @@ function populateActivityInfo(id, date) {
   `You were ${activity.getAverageStairsByDay(date) - activity.getDay(id, date).flightsOfStairs} stairs below the average`;
 }
 
-populateUserInfo(46, '2019/07/25');
-populateHydrationInfo(46, '2019/07/25');
-populateSleepInfo(46, '2019/07/25');
-populateActivityInfo(46, '2019/07/25');
+function populateFriendsList(id, date) {
+  firstPlace.innerHTML = `<span>First Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[0]}, 
+      ${activity.challengeFriends(id, date, userRepo).map(friendID => activity.getDay(friendID, date).numSteps)[0]} steps`;
+  secondPlace.innerHTML = (activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[1]) ?
+    `<span>Second Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[1]},
+      ${activity.challengeFriends(id, date, userRepo).map(friendID => activity.getDay(friendID, date).numSteps)[1]} steps`:
+    null
+  thirdPlace.innerHTML = (activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[2]) ?
+  `<span>Third Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[2]},
+      ${activity.challengeFriends(id, date, userRepo).map(friendID => activity.getDay(friendID, date).numSteps)[2]} steps`:
+    null
+  fourthPlace.innerHTML = (activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[3]) ?
+  `<span>Fourth Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[3]},
+      ${activity.challengeFriends(id, date, userRepo).map(friendID => activity.getDay(friendID, date).numSteps)[3]} steps`:
+    null
+  fifthPlace.innerHTML = (activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[4]) ?
+  `<span>Fifth Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[4]},
+      ${activity.challengeFriends(id, date, userRepo).map(friendID => activity.getDay(friendID, date).numSteps)[4]} steps`:
+    null
+}
+
+populateUserInfo(22, '2019/07/25');
+populateHydrationInfo(22, '2019/07/25');
+populateSleepInfo(22, '2019/07/25');
+populateActivityInfo(22, '2019/07/25');
+populateFriendsList(22, '2019/07/25');
