@@ -38,7 +38,10 @@ const hydrationDay2 = document.querySelector('.H-day-2');
 const hydrationDay1 = document.querySelector('.H-day-1');
 const daySleepHours = document.querySelector('.current-sleep-hours');
 const daySleepQuality = document.querySelector('.current-sleep-quality');
-const actvityDay = document.querySelector('.activity-day')
+const daySteps = document.querySelector('.day-steps');
+const dayActiveTime = document.querySelector('.day-active-time');
+const milesWalkedDay = document.querySelector('.miles-walked-day');
+
 
 function populateUserInfo(id, date) {
   let user = new User(userRepo.getUserData(id));
@@ -91,11 +94,13 @@ function populateSleepInfo(id, date) {
   overallSleepQualityBox.innerText = `Your average sleep quality per day is graded at ${sleep.calculateAverageQuality(id)}`
 }
 
-function test(id, date) {
-  actvityDay.innerHTML = activity.getAverageMinutesByWeek(id, date)
+function populateActivityInfo(id, date) {
+  daySteps.innerText = `You took ${activity.getDay(id, date).numSteps} steps today`;
+  dayActiveTime.innerText = `You were active for ${activity.getDay(id, date).minutesActive} minutes today`;
+  milesWalkedDay.innerText = `You walked ${activity.getMilesByDay(id, date, userRepo)} miles today`
 }
 
 populateUserInfo(46, '2019/07/25');
 populateHydrationInfo(46, '2019/07/25');
 populateSleepInfo(46, '2019/07/25');
-test(46, '2019/07/25');
+populateActivityInfo(46, '2019/07/25');
