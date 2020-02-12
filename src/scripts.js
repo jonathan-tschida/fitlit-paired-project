@@ -52,6 +52,8 @@ const secondPlace = document.querySelector('.second-place');
 const thirdPlace = document.querySelector('.third-place');
 const fourthPlace = document.querySelector('.fourth-place');
 const fifthPlace = document.querySelector('.fifth-place');
+const trendDataStepsBox = document.querySelector('.trend-data-steps');
+const trendDataMinutesBox = document.querySelector('.trend-data-minutes');
 
 function populateUserInfo(id, date) {
   let user = new User(userRepo.getUserData(id));
@@ -141,8 +143,19 @@ function populateFriendsList(id, date) {
     null
 }
 
+function populateTrendInfo(id) {
+  trendDataStepsBox.innerHTML = activity.getStepsTrend(id).map(day => {
+    return `Day: ${day.date} Steps: ${day.numSteps}`
+  })
+
+  trendDataMinutesBox.innerHTML = activity.getStepsTrend(id).map(day => {
+    return `Day: ${day.date} Minutes: ${day.minutesActive}`
+  })
+}
+
 populateUserInfo(22, '2019/07/25');
 populateHydrationInfo(22, '2019/07/25');
 populateSleepInfo(22, '2019/07/25');
 populateActivityInfo(22, '2019/07/25');
 populateFriendsList(22, '2019/07/25');
+populateTrendInfo(22);

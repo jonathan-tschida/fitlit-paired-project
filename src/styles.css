@@ -49,7 +49,7 @@ main {
   align-items: center;
   flex-direction: column;
   background: rgb(240, 240, 240);
-  height: 130%;
+  height: 70em;
 }
 /* info card */
 .user-info-card {
@@ -149,4 +149,28 @@ main {
 .sleep-quality-week {
   width: fit-content;
   margin: 0;
+}
+
+.trends {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: fit-content;
+  border: 1px solid black;
+  background: rgb(221,255,0);
+  background: linear-gradient(90deg, rgba(221,255,0,1) 0%, rgba(158,167,34,1) 0%, rgba(204,191,58,1) 0%, rgba(80,128,145,1) 0%);
+  margin-top: 1em;
+  padding: 1em;
+}
+.trend-data-steps {
+  width: 90%;
+  height: fit-content;
+}
+
+.trend-data-minutes {
+  width: 90%;
+  height: fit-content;
+  margin-top: 1em;
 }
