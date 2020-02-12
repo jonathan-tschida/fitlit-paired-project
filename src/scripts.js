@@ -109,17 +109,17 @@ function populateActivityInfo(id, date) {
   dayActiveTime.innerText = `You were active for ${activity.getDay(id, date).minutesActive} minutes today`;
   milesWalkedDay.innerText = `You walked ${activity.getMilesByDay(id, date, userRepo)} miles today`;
   weeklySteps.innerText = `You took ${activity.getStepsByWeek(id, date)} steps this week`;
-  weeklyMinutes.innerText = `You averaged ${activity.getAverageMinutesByWeek(id, date)} minutes of activity a day this week`;
-  weeklyStairs.innerText = `You averaged ${activity.getAverageStairsByWeek(id, date)} stairs per day this week`;
-  stepComparisonDay.innerText = (activity.getDay(id, date).numSteps > activity.getAverageStepsByDay(date)) ?
-  `You were ${activity.getDay(id, date).numSteps - activity.getAverageStepsByDay(date)} steps above the average` :
-  `You were ${activity.getAverageStepsByDay(date) - activity.getDay(id, date).numSteps} steps below the average`;
-  minutesComparison.innerText = (activity.getDay(id, date).minutesActive > activity.getAverageMinutesByDay(date)) ?
-  `You were ${activity.getDay(id, date).minutesActive - activity.getAverageMinutesByDay(date)} minutes above the average` :
-  `You were ${activity.getAverageMinutesByDay(date) - activity.getDay(id, date).minutesActive} minutes below the average`;
-  stairComparison.innerText = (activity.getDay(id, date).flightsOfStairs > activity.getAverageStairsByDay(date)) ?
-  `You were ${activity.getDay(id, date).flightsOfStairs - activity.getAverageStairsByDay(date)} stairs above the average` :
-  `You were ${activity.getAverageStairsByDay(date) - activity.getDay(id, date).flightsOfStairs} stairs below the average`;
+  weeklyMinutes.innerText = `You averaged ${activity.getAverageByWeek('minutesActive', id, date)} minutes of activity a day this week`;
+  weeklyStairs.innerText = `You averaged ${activity.getAverageByWeek('flightsOfStairs', id, date)} stairs per day this week`;
+  stepComparisonDay.innerText = (activity.getDay(id, date).numSteps > activity.getAverageByDay('numSteps', date)) ?
+  `You were ${activity.getDay(id, date).numSteps - activity.getAverageByDay('numSteps', date)} steps above the average` :
+  `You were ${activity.getAverageByDay('numSteps', date) - activity.getDay(id, date).numSteps} steps below the average`;
+  minutesComparison.innerText = (activity.getDay(id, date).minutesActive > activity.getAverageByDay('minutesActive', date)) ?
+  `You were ${activity.getDay(id, date).minutesActive - activity.getAverageByDay('minutesActive', date)} minutes above the average` :
+  `You were ${activity.getAverageByDay('minutesActive', date) - activity.getDay(id, date).minutesActive} minutes below the average`;
+  stairComparison.innerText = (activity.getDay(id, date).flightsOfStairs > activity.getAverageByDay('flightsOfStairs', date)) ?
+  `You were ${activity.getDay(id, date).flightsOfStairs - activity.getAverageByDay('flightsOfStairs', date)} stairs above the average` :
+  `You were ${activity.getAverageByDay('flightsOfStairs', date) - activity.getDay(id, date).flightsOfStairs} stairs below the average`;
 }
 
 function populateFriendsList(id, date) {

@@ -41,7 +41,7 @@ describe('Activity', function() {
   });
 
   it('Should be able to return a weekly average of minutes active', function() {
-    expect(activity.getAverageMinutesByWeek(1, '2020/02/08')).to.equal(93);
+    expect(activity.getAverageByWeek('minutesActive', 1, '2020/02/08')).to.equal(93);
   });
 
   it('Should tell a user that they\'ve reached a step goal', function() {
@@ -62,19 +62,19 @@ describe('Activity', function() {
   });
 
   it('Should find the average stairs climbed among all users for a given date', function() {
-    expect(activity.getAverageStairsByDay('2020/02/02')).to.equal(23);
+    expect(activity.getAverageByDay('flightsOfStairs', '2020/02/02')).to.equal(23);
   });
 
   it('Should find a user\'s average stairs climbed for a week', function() {
-    expect(activity.getAverageStairsByWeek(1, '2020/02/08')).to.equal(33);
+    expect(activity.getAverageByWeek('flightsOfStairs', 1, '2020/02/08')).to.equal(33);
   });
 
   it('Should find the average steps taken among all users for a given date', function() {
-    expect(activity.getAverageStepsByDay('2020/02/02')).to.equal(5194);
+    expect(activity.getAverageByDay('numSteps', '2020/02/02')).to.equal(5194);
   });
 
   it('Should find the average minutes active among all users for a given date', function() {
-    expect(activity.getAverageMinutesByDay('2020/02/02')).to.equal(169);
+    expect(activity.getAverageByDay('minutesActive','2020/02/02')).to.equal(169);
   });
 
   it('Should find days where the steps were increasing for three days', function() {
