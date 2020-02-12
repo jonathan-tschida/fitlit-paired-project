@@ -28,11 +28,11 @@ describe('Activity', function() {
     expect(activity.getStepsByWeek(1, '2020/02/08')).to.equal(51116);
   });
 
-  it('Should be able to return miles walked for a given day', function(){
+  it('Should be able to return miles walked for a given day', function() {
     expect(activity.getMilesByDay(1, '2020/02/02', userRepo)).to.equal(2.3);
   });
 
-  it('Should be able to return miles walked each day in a week', function(){
+  it('Should be able to return miles walked each day in a week', function() {
     expect(activity.getMilesByWeek(1, '2020/02/08', userRepo)).to.deep.equal([2.3, 2.6, 7.7, 6.8, 5.3, 7, 4.1]);
   });
 
@@ -40,15 +40,15 @@ describe('Activity', function() {
     expect(activity.getMinutesByDay(1, '2020/02/02')).to.equal(14);
   });
 
-  it('Should be able to return a weekly average of minutes active', function(){
+  it('Should be able to return a weekly average of minutes active', function() {
     expect(activity.getAverageMinutesByWeek(1, '2020/02/08')).to.equal(93);
   });
 
-  it('Should tell a user that they\'ve reached a step goal', function(){
+  it('Should tell a user that they\'ve reached a step goal', function() {
     expect(activity.checkStepGoal(11, '2020/02/04', userRepo)).to.equal(true);
   });
 
-  it('Should tell a user that they haven\'t reached a step goal', function(){
+  it('Should tell a user that they haven\'t reached a step goal', function() {
     expect(activity.checkStepGoal(11, '2020/02/02', userRepo)).to.equal(false);
   });
 

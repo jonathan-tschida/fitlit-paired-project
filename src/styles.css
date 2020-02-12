@@ -49,7 +49,7 @@ main {
   align-items: center;
   flex-direction: column;
   background: rgb(240, 240, 240);
-  height: 130%;
+  height: 220%;
 }
 /* info card */
 .user-info-card {
@@ -59,7 +59,7 @@ main {
   justify-content: space-around;
   align-items: center;
   border: .1em solid black;
-  margin-top: 5em;
+  margin-top: 1em;
   border-radius: 1em;
   background: rgb(221,255,0);
   background: linear-gradient(90deg, rgba(221,255,0,1) 0%, rgba(158,167,34,1) 0%, rgba(204,191,58,1) 40%, rgba(213,213,35,1) 100%);
@@ -73,6 +73,10 @@ main {
 }
 
 .friends-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 50%;
   height: 9em;
   border: .1em solid black;
@@ -133,6 +137,7 @@ main {
   width: 90%;
   margin-bottom: 1em;
   border-radius: 1em;
+  padding: .5em;
 }
 
 .sleep-week-data {
@@ -145,4 +150,29 @@ main {
 .sleep-quality-week {
   width: fit-content;
   margin: 0;
+}
+
+.trends {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: fit-content;
+  border: 1px solid black;
+  background: rgb(109,0,255);
+  background: linear-gradient(90deg, rgba(109,0,255,1) 0%, rgba(145,58,204,1) 0%, rgba(120,34,167,1) 29%, rgba(131,80,145,1) 79%);
+  margin-top: 1em;
+  padding: 1em;
+}
+.trend-data-steps {
+  margin-top: 1em;
+  width: 90%;
+  height: fit-content;
+}
+
+.trend-data-minutes {
+  width: 90%;
+  height: fit-content;
+  margin-top: 1em;
 }
