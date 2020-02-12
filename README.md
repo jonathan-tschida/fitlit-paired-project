@@ -1,6 +1,6 @@
 # Overview
 
-Paired project during Mod 2 at Turing School of Software. Given basic direction on a data structure and UI. Use classes and array prototypes to manipulate an extensive database of users. 
+Paired project during Mod 2 at Turing School of Software. We had 8 days to complete this project. We created classes and connected their methods to be displayed on the DOM. We used classes and array prototypes to manipulate an extensive database of users. We used Mocha and Chai for the TDD, HTML, CSS, and ES6 JavaScript.
 
 
 # Screen Shots
