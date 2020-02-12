@@ -147,7 +147,6 @@ function populateTrendInfo(id) {
   trendDataStepsBox.innerHTML = activity.getStepsTrend(id).map(day => {
     return `Day: ${day.date} Steps: ${day.numSteps}`
   })
-
   trendDataMinutesBox.innerHTML = activity.getStepsTrend(id).map(day => {
     return `Day: ${day.date} Minutes: ${day.minutesActive}`
   })
