@@ -28,7 +28,7 @@ class Activity {
       acc += num / numData.length
       return acc
     }, 0)
-    return average.toFixed(0);
+    return Math.round(average);
   }
 
   getStepsByWeek(id, date) {
