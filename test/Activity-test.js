@@ -79,12 +79,12 @@ describe('Activity', function() {
 
   it('Should find days where the steps were increasing for three days', function() {
     let streakDays = activityData.slice(19);
-    expect(activity.getStepsTrend(111)).to.deep.equal(streakDays);
+    expect(activity.getTrend('numSteps', 111)).to.deep.equal(streakDays);
   });
 
   it('Should find days where minutes active were increasing for three days', function() {
     let streakDays = [activityData[18]];
-    expect(activity.getMinutesTrend(111)).to.deep.equal(streakDays);
+    expect(activity.getTrend('minutesActive', 111)).to.deep.equal(streakDays);
   });
 
   it('Should be able to return an array of ids ordered by steps taken in a week', function() {

@@ -123,7 +123,7 @@ function populateActivityInfo(id, date) {
 }
 
 function populateFriendsList(id, date) {
-  firstPlace.innerHTML = `<span>First Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[0]}, 
+  firstPlace.innerHTML = `<span>First Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[0]},
       ${activity.challengeFriends(id, date, userRepo).map(friendID => activity.getDay(friendID, date).numSteps)[0]} steps`;
   secondPlace.innerHTML = (activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[1]) ?
     `<span>Second Place</span>: ${activity.challengeFriends(id, date, userRepo).map(friendID => userRepo.getUserData(friendID).name)[1]},
@@ -144,10 +144,10 @@ function populateFriendsList(id, date) {
 }
 
 function populateTrendInfo(id) {
-  trendDataStepsBox.innerHTML = activity.getStepsTrend(id).map(day => {
+  trendDataStepsBox.innerHTML = activity.getTrend('numSteps', id).map(day => {
     return `Day: ${day.date} Steps: ${day.numSteps}`
   })
-  trendDataMinutesBox.innerHTML = activity.getStepsTrend(id).map(day => {
+  trendDataMinutesBox.innerHTML = activity.getTrend('minutesActive', id).map(day => {
     return `Day: ${day.date} Minutes: ${day.minutesActive}`
   })
 }
