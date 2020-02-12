@@ -18,6 +18,19 @@ class Activity {
       this.getUserData(id).slice(0, endDate + 1);
   }
 
+  getAverageStairsByWeek(id, date) {
+    let endDate = this.getUserData(id).findIndex(obj => obj.date === date);
+    let filteredData = this.getUserData(id).map(day => day.flightsOfStairs)
+    let numData = endDate - 6 >= 0 ?
+      filteredData.slice(endDate - 6, endDate + 1) :
+      filteredData.slice(0, endDate + 1);
+    let average = numData.reduce((acc, num) => {
+      acc += num / numData.length
+      return acc
+    }, 0)
+    return average.toFixed(0);
+  }
+
   getStepsByWeek(id, date) {
     return this.getWeek(id, date).reduce((acc, obj) => acc + obj.numSteps, 0);
   }

@@ -104,7 +104,8 @@ function populateActivityInfo(id, date) {
   dayActiveTime.innerText = `You were active for ${activity.getDay(id, date).minutesActive} minutes today`;
   milesWalkedDay.innerText = `You walked ${activity.getMilesByDay(id, date, userRepo)} miles today`;
   weeklySteps.innerText = `You took ${activity.getStepsByWeek(id, date)} steps this week`;
-  weeklyMinutes.innerText = `You averaged ${activity.getAverageMinutesByWeek(id, date)} minutes of activity a day this week`
+  weeklyMinutes.innerText = `You averaged ${activity.getAverageMinutesByWeek(id, date)} minutes of activity a day this week`;
+  weeklyStairs.innerText = `You averaged ${activity.getAverageStairsByWeek(id, date)} stairs per day`
 }
 
 populateUserInfo(46, '2019/07/25');
