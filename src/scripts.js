@@ -71,35 +71,20 @@ function populateUserInfo(id, date) {
 
 function populateHydrationInfo(id, date) {
   dayHydrationBox.innerHTML = `${hydration.getDay(id, date)} oz. of water consumed`;
-  let weekDataObjs = hydration.getWeek(id, date);
+  let weekDataObjs = hydration.getWeek(id, date).reverse();
   let weekNumbers = weekDataObjs.map(obj => obj.numOunces);
-  hydrationCurrentDay.innerHTML = `<span>${weekDataObjs[6].date}:</span> ${weekNumbers[6]} oz.`;
-  hydrationDay6.innerHTML = `<span>${weekDataObjs[5].date}:</span> ${weekNumbers[5]} oz.`;
-  hydrationDay5.innerHTML = `<span>${weekDataObjs[4].date}:</span> ${weekNumbers[4]} oz.`;
-  hydrationDay4.innerHTML = `<span>${weekDataObjs[3].date}:</span> ${weekNumbers[3]} oz.`;
-  hydrationDay3.innerHTML = `<span>${weekDataObjs[2].date}:</span> ${weekNumbers[2]} oz.`;
-  hydrationDay2.innerHTML = `<span>${weekDataObjs[1].date}:</span> ${weekNumbers[1]} oz.`;
-  hydrationDay1.innerHTML = `<span>${weekDataObjs[0].date}:</span> ${weekNumbers[0]} oz.`;
+  document.querySelectorAll('.H-day').forEach((element, index) =>
+    element.innerHTML = `<span>${weekDataObjs[index].date}:</span> ${weekNumbers[index]} oz.`);
 }
 
 function populateSleepInfo(id, date) {
-  let weekDataObjs = sleep.getWeekData(id, date);
+  let weekDataObjs = sleep.getWeekData(id, date).reverse();
   daySleepHours.innerText = `You slept ${sleep.getDayHours(id, date)} hours`;
-  daySleepQuality.innerText = `Your sleep quality was graded at ${sleep.getDayQuality(id, date)}`
-  sleepHrCurrentDay.innerHTML = `<span>${weekDataObjs[6].date}</span>: ${weekDataObjs[6].hoursSlept} hours`;
-  sleepHrDay6.innerHTML = `<span>${weekDataObjs[5].date}</span>: ${weekDataObjs[5].hoursSlept} hours`;
-  sleepHrDay5.innerHTML = `<span>${weekDataObjs[4].date}</span>: ${weekDataObjs[4].hoursSlept} hours`;
-  sleepHrDay4.innerHTML = `<span>${weekDataObjs[3].date}</span>: ${weekDataObjs[3].hoursSlept} hours`;
-  sleepHrDay3.innerHTML = `<span>${weekDataObjs[2].date}</span>: ${weekDataObjs[2].hoursSlept} hours`;
-  sleepHrDay2.innerHTML = `<span>${weekDataObjs[1].date}</span>: ${weekDataObjs[1].hoursSlept} hours`;
-  sleepHrDay1.innerHTML = `<span>${weekDataObjs[0].date}</span>: ${weekDataObjs[0].hoursSlept} hours`;
-  sleepQualCurrentDay.innerHTML = `${weekDataObjs[6].sleepQuality} quality grade`;
-  sleepQualDay6.innerHTML = `${weekDataObjs[5].sleepQuality} quality grade`;
-  sleepQualDay5.innerHTML = `${weekDataObjs[4].sleepQuality} quality grade`;
-  sleepQualDay4.innerHTML = `${weekDataObjs[3].sleepQuality} quality grade`;
-  sleepQualDay3.innerHTML = `${weekDataObjs[2].sleepQuality} quality grade`;
-  sleepQualDay2.innerHTML = `${weekDataObjs[1].sleepQuality} quality grade`;
-  sleepQualDay1.innerHTML = `${weekDataObjs[0].sleepQuality} quality grade`;
+  daySleepQuality.innerText = `Your sleep quality was graded at ${sleep.getDayQuality(id, date)}`;
+  document.querySelectorAll('.S-Hr').forEach((element, index) =>
+    element.innerHTML = `<span>${weekDataObjs[index].date}</span>: ${weekDataObjs[index].hoursSlept} hours`);
+  document.querySelectorAll('.S-Qual').forEach((element, index) =>
+    element.innerHTML = `${weekDataObjs[index].sleepQuality} quality grade`);
   overallSleepHoursBox.innerText = `Your average hours slept per day is ${sleep.calculateAverageHours(id)} hours`;
   overallSleepQualityBox.innerText = `Your average sleep quality per day is graded at ${sleep.calculateAverageQuality(id)}`
 }
@@ -112,14 +97,14 @@ function populateActivityInfo(id, date) {
   weeklyMinutes.innerText = `You averaged ${activity.getAverageByWeek('minutesActive', id, date)} minutes of activity a day this week`;
   weeklyStairs.innerText = `You averaged ${activity.getAverageByWeek('flightsOfStairs', id, date)} stairs per day this week`;
   stepComparisonDay.innerText = (activity.getDay(id, date).numSteps > activity.getAverageByDay('numSteps', date)) ?
-  `You were ${activity.getDay(id, date).numSteps - activity.getAverageByDay('numSteps', date)} steps above the average` :
-  `You were ${activity.getAverageByDay('numSteps', date) - activity.getDay(id, date).numSteps} steps below the average`;
+    `You were ${activity.getDay(id, date).numSteps - activity.getAverageByDay('numSteps', date)} steps above the average` :
+    `You were ${activity.getAverageByDay('numSteps', date) - activity.getDay(id, date).numSteps} steps below the average`;
   minutesComparison.innerText = (activity.getDay(id, date).minutesActive > activity.getAverageByDay('minutesActive', date)) ?
-  `You were ${activity.getDay(id, date).minutesActive - activity.getAverageByDay('minutesActive', date)} minutes above the average` :
-  `You were ${activity.getAverageByDay('minutesActive', date) - activity.getDay(id, date).minutesActive} minutes below the average`;
+    `You were ${activity.getDay(id, date).minutesActive - activity.getAverageByDay('minutesActive', date)} minutes above the average` :
+    `You were ${activity.getAverageByDay('minutesActive', date) - activity.getDay(id, date).minutesActive} minutes below the average`;
   stairComparison.innerText = (activity.getDay(id, date).flightsOfStairs > activity.getAverageByDay('flightsOfStairs', date)) ?
-  `You were ${activity.getDay(id, date).flightsOfStairs - activity.getAverageByDay('flightsOfStairs', date)} stairs above the average` :
-  `You were ${activity.getAverageByDay('flightsOfStairs', date) - activity.getDay(id, date).flightsOfStairs} stairs below the average`;
+    `You were ${activity.getDay(id, date).flightsOfStairs - activity.getAverageByDay('flightsOfStairs', date)} stairs above the average` :
+    `You were ${activity.getAverageByDay('flightsOfStairs', date) - activity.getDay(id, date).flightsOfStairs} stairs below the average`;
 }
 
 function populateFriendsList(id, date) {
