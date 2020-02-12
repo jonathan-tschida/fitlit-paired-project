@@ -41,6 +41,11 @@ const daySleepQuality = document.querySelector('.current-sleep-quality');
 const daySteps = document.querySelector('.day-steps');
 const dayActiveTime = document.querySelector('.day-active-time');
 const milesWalkedDay = document.querySelector('.miles-walked-day');
+const weeklySteps = document.querySelector('.weekly-steps');
+const weeklyStairs = document.querySelector('.weekly-stairs');
+const weeklyMinutes = document.querySelector('.weekly-minutes')
+
+
 
 
 function populateUserInfo(id, date) {
@@ -97,7 +102,9 @@ function populateSleepInfo(id, date) {
 function populateActivityInfo(id, date) {
   daySteps.innerText = `You took ${activity.getDay(id, date).numSteps} steps today`;
   dayActiveTime.innerText = `You were active for ${activity.getDay(id, date).minutesActive} minutes today`;
-  milesWalkedDay.innerText = `You walked ${activity.getMilesByDay(id, date, userRepo)} miles today`
+  milesWalkedDay.innerText = `You walked ${activity.getMilesByDay(id, date, userRepo)} miles today`;
+  weeklySteps.innerText = `You took ${activity.getStepsByWeek(id, date)} steps this week`;
+  weeklyMinutes.innerText = `You averaged ${activity.getAverageMinutesByWeek(id, date)} minutes of activity a day this week`
 }
 
 populateUserInfo(46, '2019/07/25');
