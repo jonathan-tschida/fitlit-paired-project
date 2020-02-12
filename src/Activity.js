@@ -18,17 +18,10 @@ class Activity {
       this.getUserData(id).slice(0, endDate + 1);
   }
 
-  getAverageStairsByWeek(id, date) {
-    let endDate = this.getUserData(id).findIndex(obj => obj.date === date);
-    let filteredData = this.getUserData(id).map(day => day.flightsOfStairs)
-    let numData = endDate - 6 >= 0 ?
-      filteredData.slice(endDate - 6, endDate + 1) :
-      filteredData.slice(0, endDate + 1);
-    let average = numData.reduce((acc, num) => {
-      acc += num / numData.length
-      return acc
-    }, 0)
-    return average.toFixed(0);
+  getAverageByWeek(propertyName, id, date) {
+    let weekData = this.getWeek(id, date);
+    return Math.round(weekData.reduce((acc, day) =>
+      acc + day[propertyName], 0) / weekData.length);
   }
 
   getStepsByWeek(id, date) {
@@ -49,12 +42,6 @@ class Activity {
     return this.getDay(id, date).minutesActive;
   }
 
-  getAverageMinutesByWeek(id, date) {
-    let weekData = this.getWeek(id, date);
-    return Math.round(weekData.reduce((acc, day) =>
-      acc + day.minutesActive, 0) / weekData.length);
-  }
-
   checkStepGoal(id, date, userRepo) {
     return this.getDay(id, date).numSteps > userRepo.getUserData(id).dailyStepGoal;
   }
@@ -69,45 +56,18 @@ class Activity {
       a.flightsOfStairs - b.flightsOfStairs).pop().flightsOfStairs;
   }
 
-  getAverageStairsByDay(date) {
-    let userIDs = [...new Set(this.activityData.map(object => object.userID))];
-    let totalStairs = userIDs.reduce((acc, ID) =>
-      acc + this.getDay(ID, date).flightsOfStairs, 0);
-    return Math.round(totalStairs / userIDs.length);
-  }
-
-  getAverageStepsByDay(date) {
-    let userIDs = [...new Set(this.activityData.map(object => object.userID))];
-    let totalSteps = userIDs.reduce((acc, ID) =>
-      acc + this.getDay(ID, date).numSteps, 0);
-    return Math.round(totalSteps / userIDs.length);
-  }
-
-  getAverageMinutesByDay(date) {
+  getAverageByDay(propertyName, date) {
     let userIDs = [...new Set(this.activityData.map(object => object.userID))];
     let totalMinutes = userIDs.reduce((acc, ID) =>
-      acc + this.getDay(ID, date).minutesActive, 0);
+      acc + this.getDay(ID, date)[propertyName], 0);
     return Math.round(totalMinutes / userIDs.length);
   }
 
-  getStepsTrend(id) {
-    let groupedData = this.getUserData(id).map((obj, index, array) =>
-      array.slice(index - 2, index + 1)).slice(2);
-
-    let sortedData = JSON.parse(JSON.stringify(groupedData)).map(group =>
-      group.sort((a, b) => a.numSteps - b.numSteps));
-
-    let streaks = groupedData.filter((group, index1) =>
-      group.every((obj, index2) =>
-        obj.date === sortedData[index1][index2].date));
-    return streaks.map(streak => streak[2]);
-  }
-
-  getMinutesTrend(id) {
+  getTrend(propertyName, id) {
     let groupedData = this.getUserData(id).map((obj, index, array) =>
       array.slice(index - 2, index + 1)).slice(2);
     let sortedData = JSON.parse(JSON.stringify(groupedData)).map(group =>
-      group.sort((a, b) => a.minutesActive - b.minutesActive));
+      group.sort((a, b) => a[propertyName] - b[propertyName]));
     let streaks = groupedData.filter((group, index1) =>
       group.every((obj, index2) =>
         obj.date === sortedData[index1][index2].date));

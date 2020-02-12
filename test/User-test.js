@@ -40,7 +40,7 @@ describe('User', function() {
   });
 
   it('should have some friends', function(){
-    expect(user.friends).to.deep.equal([1, 111])
+    expect(user.friends).to.deep.equal([11, 111])
   });
 
   it('should be able to return a first name', function(){
