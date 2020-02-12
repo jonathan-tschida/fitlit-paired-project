@@ -9,7 +9,6 @@ const userEmail = document.querySelector('.user-email');
 const userStride = document.querySelector('.user-stride-length');
 const userStepGoal = document.querySelector('.user-step-goal');
 const userGoalAverage = document.querySelector('.step-goal-average');
-const friendsList = document.querySelector('.friends-list');
 const stepComparison = document.querySelector('.step-goal-comparison');
 const dayHydrationBox = document.querySelector('.h-day-info');
 const overallSleepHoursBox = document.querySelector('.sleep-hours-all-time');
@@ -109,10 +108,10 @@ function populateFriendsList(id, date) {
 
 function populateTrendInfo(id) {
   trendDataStepsBox.innerHTML = activity.getTrend('numSteps', id).map(day => {
-    return `Day: ${day.date} Steps: ${day.numSteps}`
+    return `Day: ${day.date} Steps: ${day.numSteps} =>`
   })
   trendDataMinutesBox.innerHTML = activity.getTrend('minutesActive', id).map(day => {
-    return `Day: ${day.date} Minutes: ${day.minutesActive}`
+    return `Day: ${day.date} Minutes: ${day.minutesActive} =>`
   })
 }
 

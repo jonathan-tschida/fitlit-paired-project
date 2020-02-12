@@ -162,7 +162,7 @@ main {
   border: 1px solid black;
   background: rgb(109,0,255);
   background: linear-gradient(90deg, rgba(109,0,255,1) 0%, rgba(145,58,204,1) 0%, rgba(120,34,167,1) 29%, rgba(131,80,145,1) 79%);
-  margin-top: 1em;
+  margin-bottom: 2em;
   padding: 1em;
 }
 .trend-data-steps {
