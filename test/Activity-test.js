@@ -1,4 +1,4 @@
-const chai = require('chai');
+  const chai = require('chai');
 const expect = chai.expect;
 
 const data1 = require('./data/activity.js');
@@ -63,6 +63,10 @@ describe('Activity', function() {
 
   it('Should find the average stairs climbed among all users for a given date', function() {
     expect(activity.getAverageStairsByDay('2020/02/02')).to.equal(23);
+  });
+
+  it('Should find a user\'s average stairs climbed for a week', function() {
+    expect(activity.getAverageStairsByWeek(1, '2020/02/08')).to.equal(33);
   });
 
   it('Should find the average steps taken among all users for a given date', function() {
