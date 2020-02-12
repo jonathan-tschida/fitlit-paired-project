@@ -43,10 +43,10 @@ const dayActiveTime = document.querySelector('.day-active-time');
 const milesWalkedDay = document.querySelector('.miles-walked-day');
 const weeklySteps = document.querySelector('.weekly-steps');
 const weeklyStairs = document.querySelector('.weekly-stairs');
-const weeklyMinutes = document.querySelector('.weekly-minutes')
-
-
-
+const weeklyMinutes = document.querySelector('.weekly-minutes');
+const stepComparisonDay = document.querySelector('.step-comparison');
+const minutesComparison = document.querySelector('.minutes-comparison');
+const stairComparison = document.querySelector('.stair-comparison');
 
 function populateUserInfo(id, date) {
   let user = new User(userRepo.getUserData(id));
@@ -105,7 +105,16 @@ function populateActivityInfo(id, date) {
   milesWalkedDay.innerText = `You walked ${activity.getMilesByDay(id, date, userRepo)} miles today`;
   weeklySteps.innerText = `You took ${activity.getStepsByWeek(id, date)} steps this week`;
   weeklyMinutes.innerText = `You averaged ${activity.getAverageMinutesByWeek(id, date)} minutes of activity a day this week`;
-  weeklyStairs.innerText = `You averaged ${activity.getAverageStairsByWeek(id, date)} stairs per day`
+  weeklyStairs.innerText = `You averaged ${activity.getAverageStairsByWeek(id, date)} stairs per day this week`;
+  stepComparisonDay.innerText = (activity.getDay(id, date).numSteps > activity.getAverageStepsByDay(date)) ?
+  `You were ${activity.getDay(id, date).numSteps - activity.getAverageStepsByDay(date)} steps above the average` :
+  `You were ${activity.getAverageStepsByDay(date) - activity.getDay(id, date).numSteps} steps below the average`;
+  minutesComparison.innerText = (activity.getDay(id, date).minutesActive > activity.getAverageMinutesByDay(date)) ?
+  `You were ${activity.getDay(id, date).minutesActive - activity.getAverageMinutesByDay(date)} minutes above the average` :
+  `You were ${activity.getAverageMinutesByDay(date) - activity.getDay(id, date).minutesActive} minutes below the average`;
+  stairComparison.innerText = (activity.getDay(id, date).flightsOfStairs > activity.getAverageStairsByDay(date)) ?
+  `You were ${activity.getDay(id, date).flightsOfStairs - activity.getAverageStairsByDay(date)} stairs above the average` :
+  `You were ${activity.getAverageStairsByDay(date) - activity.getDay(id, date).flightsOfStairs} stairs below the average`;
 }
 
 populateUserInfo(46, '2019/07/25');
